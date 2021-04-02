@@ -47,11 +47,15 @@ window.onload = () => {
     ctx.baseline = 'middle'
 
     let gameOver = false
+
     let loadedAllImages = false
     const loadedImages = {}
     const listOfUrls = {road: '/images/road.png', car: '/images/car.png'}
     let counterForLoadedImages = 0
     const arrayOfObstacles = []
+
+    let backgroundAudio
+
     let score = 0
 
     const car = new Car()
@@ -72,6 +76,8 @@ window.onload = () => {
     // GAME LOGIC
     const startGame = () => {
         loadImages()
+        loadAudios()
+        backgroundAudio.play()
         updateCanvas()
     }
 
@@ -88,6 +94,11 @@ window.onload = () => {
                 }
             }
         }
+    }
+     
+    const loadAudios = () => {
+        backgroundAudio = new Audio('/sounds/tech-house.mp3')
+
     }
 
     const clearCanvas = () => {
@@ -138,6 +149,7 @@ window.onload = () => {
         arrayOfObstacles.forEach((obstacle)=>{
             if (obstacle.y + obstacle.height === car.y){
                 if ((obstacle.x <= car.x && car.x <= (obstacle.x+obstacle.width))||(obstacle.x <= (car.x+car.width) && (car.x+car.width) <= (obstacle.x+obstacle.width))){
+                    backgroundAudio.pause()
                     gameOver = true
                     renderGameOverText()
                 }else{
