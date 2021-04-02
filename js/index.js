@@ -98,6 +98,8 @@ window.onload = () => {
      
     const loadAudios = () => {
         backgroundAudio = new Audio('/sounds/tech-house.mp3')
+        backgroundAudio.loop
+        backgroundAudio.volume = 0.1
 
     }
 
@@ -158,6 +160,14 @@ window.onload = () => {
             }
         })
     }
+    const checkBorders = () => {
+        if (car.x <= 65){
+          car.x = 65
+        }
+        if (car.x >= 435){
+          car.x = 435
+        }
+      }
 
     const updateCanvas = () => {
         if (loadedAllImages && !gameOver){
