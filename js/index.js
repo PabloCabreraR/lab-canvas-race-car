@@ -164,8 +164,8 @@ window.onload = () => {
         if (car.x <= 65){
           car.x = 65
         }
-        if (car.x >= 435){
-          car.x = 435
+        if (car.x >= 405){
+          car.x = 405
         }
       }
 
@@ -174,6 +174,7 @@ window.onload = () => {
             clearCanvas()
             drawRoad()
             drawCar()
+            checkBorders()
             createObstacles()
             drawObstacles()
             moveObstacle()
